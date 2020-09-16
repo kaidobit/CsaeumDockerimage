@@ -49,6 +49,15 @@ RUN mkdir apache2 && cd apache2 && \
 ln -s /var/www/html/ document_root && \
 ln -s /etc/apache2/ conf
 
+# ########################## PHP ##########################
+#add ondrej-ppa for php 7.4
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository ppa:ondrej/php
+#install php and appache's php module
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y php7.4 libapache2-mod-php
+#create symlink in mountdir
+RUN ln -s /etc/php/7.4/apache2 php
+
 # ########################## cleanup ##########################
 RUN rm GPG-KEY-elasticsearch && rm mysql-apt-config_0.8.15-1_all.deb
 

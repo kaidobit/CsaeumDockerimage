@@ -9,6 +9,7 @@ Supervisor is the mainprocess which starts, tracks and gracefully stops all serv
 Config-File: *MOUNTDIR*/supervisor/supervisord.conf
 
 Documentation: http://supervisord.org/introduction.html
+
 Configuration Reference: http://supervisord.org/configuration.html
 
 ## Services beeing started
@@ -34,3 +35,10 @@ Verison: 2.4.29
 Document-Root: *MOUNTDIR*/apache2/document_root
 
 Conf-Dir: *MOUNTDIR*/apache2/conf
+
+###PHP
+Version: 7.4.10
+
+Conf-Dir: *MOUNTDIR*/php
+
+
