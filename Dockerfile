@@ -49,17 +49,26 @@ RUN mkdir apache2 && cd apache2 && \
 ln -s /var/www/html/ document_root && \
 ln -s /etc/apache2/ conf
 
+# ########################## Memcached ##########################
+#install memcached
+RUN apt-get update && apt-get install -y memcached libmemcached-tools
+#create symlink in mountdir
+RUN mkdir memcached && ln -s /etc/memcached.conf memcached/memcached.conf
+
 # ########################## PHP ##########################
 #add ondrej-ppa for php 7.4
 RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ondrej/php
 #install php and appache's php module
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y php7.4 libapache2-mod-php
+RUN apt-get update && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y php7.4 libapache2-mod-php7.4 php-memcached php7.4-cli
 #create symlink in mountdir
 RUN ln -s /etc/php/7.4/apache2 php
 
 # ########################## cleanup ##########################
-RUN rm GPG-KEY-elasticsearch && rm mysql-apt-config_0.8.15-1_all.deb
+RUN rm GPG-KEY-elasticsearch && \
+rm mysql-apt-config_0.8.15-1_all.deb && \
+apt-get purge wget
 
 #mysql
 EXPOSE 3306
@@ -67,5 +76,7 @@ EXPOSE 3306
 EXPOSE 9200
 #apache2
 EXPOSE 80
+#memcached
+EXPOSE 11211
 
 CMD ["/usr/bin/supervisord"]

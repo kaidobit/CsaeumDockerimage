@@ -29,16 +29,21 @@ Log-Dir: *MOUNTDIR*/elasticsearch/logs
 
 Home-Dir: *MOUNTDIR*/elasticsearch/home
 
-###Apache2
+### Apache2
 Verison: 2.4.29
 
 Document-Root: *MOUNTDIR*/apache2/document_root
 
-Conf-Dir: *MOUNTDIR*/apache2/conf
+Config-Dir: *MOUNTDIR*/apache2/conf
 
-###PHP
+### Memcached
+Version: 1.5.6
+
+Config-File: *MOUNTDIR/memcached/memcached.conf*
+
+### PHP
 Version: 7.4.10
 
-Conf-Dir: *MOUNTDIR*/php
+Config-Dir: *MOUNTDIR*/php
 
 
