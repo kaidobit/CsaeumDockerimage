@@ -41,6 +41,14 @@ ln -s /var/lib/elasticsearch/ data && \
 ln -s /var/log/elasticsearch/ logs && \
 ln -s /usr/share/elasticsearch/ home
 
+# ########################## Apache ##########################
+#install apache2
+RUN apt-get install -y apache2
+#create symlinks in mountdir
+RUN mkdir apache2 && cd apache2 && \
+ln -s /var/www/html/ document_root && \
+ln -s /etc/apache2/ conf
+
 # ########################## cleanup ##########################
 RUN rm GPG-KEY-elasticsearch && rm mysql-apt-config_0.8.15-1_all.deb
 

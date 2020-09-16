@@ -27,3 +27,10 @@ Config-Dir: *MOUNTDIR*/elasticsearch/conf
 Log-Dir: *MOUNTDIR*/elasticsearch/logs
 
 Home-Dir: *MOUNTDIR*/elasticsearch/home
+
+###Apache2
+Verison: 2.4.29
+
+Document-Root: *MOUNTDIR*/apache2/document_root
+
+Conf-Dir: *MOUNTDIR*/apache2/conf
