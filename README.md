@@ -14,4 +14,16 @@ Configuration Reference: http://supervisord.org/configuration.html
 ## Services beeing started
 ### MySQL
 Version: 8.0.21
+
 Data-Dir: *MOUNTDIR*/mysql
+
+### Elasticsearch
+Version: 2.4.6
+
+Data-Dir: *MOUNTDIR*/elasticsearch/data
+
+Config-Dir: *MOUNTDIR*/elasticsearch/conf
+
+Log-Dir: *MOUNTDIR*/elasticsearch/logs
+
+Home-Dir: *MOUNTDIR*/elasticsearch/home
