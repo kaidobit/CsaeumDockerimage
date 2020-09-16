@@ -10,3 +10,6 @@ Config-File: <MOUNTDIR>/supervisor/supervisord.conf
 
 Documentation: http://supervisord.org/introduction.html
 Configuration Reference: http://supervisord.org/configuration.html
+
+## Services beeing started
+- MySQL 8
