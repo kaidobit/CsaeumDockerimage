@@ -5,7 +5,7 @@ WORKDIR /apps
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get update && apt-get install -y wget gnupg
 
-# ########################## SUPERVISOR ##########################
+# ########################## Supervisor ##########################
 #install supervisor
 RUN apt-get update && apt-get install -y supervisor
 #copy its config
