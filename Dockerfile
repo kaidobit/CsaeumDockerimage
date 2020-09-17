@@ -25,33 +25,21 @@ RUN apt-get update && \
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
 supervisor mysql-server elasticsearch apache2 memcached libmemcached-tools \
 php7.4 libapache2-mod-php7.4 php-memcached php7.4-cli
-COPY docker/entrypoint.sh entrypoint.sh
-RUN chmod +x entrypoint.sh
-
-#manage configs
-#supervisor
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN mkdir configs && \
-#php (we create a symlink from the mounted file in entrypoint)
-rm /etc/php/7.4/apache2/php.ini && \
-#memcached
-rm /etc/memcached.conf && \
-#apache2
-rm /etc/apache2/apache2.conf && \
-ln -s /var/www/html/ document_root
 
 #cleanup
 RUN rm GPG-KEY-elasticsearch && \
 rm mysql-apt-config_0.8.15-1_all.deb && \
 apt-get purge -y wget
 
-# ########################## MySQL ##########################
-#create symlink from datadir into mountdir
-RUN ln -s /var/lib/mysql/ mysql
+#manage configs
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/configs/php.ini /etc/php/7.4/apache2/php.ini
+COPY docker/configs/memcached.conf /etc/memcached.conf
+COPY docker/configs/apache2.conf /etc/apache2/apache2.conf
 
-
-
-
+#manage data
+RUN ln -s /var/www/html/ document_root && \
+ln -s /var/lib/mysql/ mysql
 
 #mysql
 EXPOSE 3306
@@ -62,4 +50,4 @@ EXPOSE 80
 #memcached
 EXPOSE 11211
 
-CMD ["/apps/entrypoint.sh"]
+CMD ["/usr/bin/supervisord"]

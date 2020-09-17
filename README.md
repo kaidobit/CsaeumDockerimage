@@ -1,20 +1,52 @@
 # CsaeumDockerimage
 Dockerimage requested by Csaeum
 
-This image has a mainprocess, which starts and keeps track of all services used by Csaeum.
 
-## Supervisor
-Supervisor is the mainprocess which starts, tracks and gracefully stops all services configured in supervisord.conf.
 
-Documentation: http://supervisord.org/introduction.html
+## Usage
+###MountPoints
+**/apps/document_root** is apache2's documentRoot.
+**/apps/mysql** is mysql's data directory.
 
-Configuration Reference: http://supervisord.org/configuration.html
+###Recommendation
+First create two docker volumes.\
+
+`docker volume create mysql && docker volume create document_root`
+
+Than get their Mountpoint.\
+
+`docker volume inspect mysql | grep Mountpoint && docker volume inspect document_root | grep Mountpoint`
+
+**[OPTIONAL]** Create the symlinks.\
+
+`<MOUNTPOINT>` = the mountpoint from last command\
+`<DIRECTORY>` = the symlink, it can be whereever you want\
+
+`ln -s <MOUNTPOINT> <DIRECTORY>`
+
+Now we can start the container.\
+
+`docker run -P -v document_root:/apps/document_root -v mysql:/var/lib/mysql/ <TAG>`\
+
+Where `<TAG>` is the tag you provided by building the image.
+
+## Build
+Build the image using\
+
+`docker build --tag <TAG> <DOCKERFILE>`\
+
+Where `<TAG>` is the tag you want to use (`<NAME>:<VERSION>`) and
+`<DOCKERFILE>` is the path of the dockerfile.
 
 ## Services beeing started
+### Supervisor
+Supervisor is the mainprocess which starts, tracks and gracefully stops all services,
+configured in supervisord.conf.
+
 ### MySQL
 Version: 8.0.21
 
-Data-Dir:
+Datadirectory: /apps/mysql
 
 ### Elasticsearch
 Version: 2.4.6
@@ -22,14 +54,12 @@ Version: 2.4.6
 ### Apache2
 Verison: 2.4.29
 
-Document-Root: *MOUNTDIR*/apache2/document_root
+DocumentRootDirectory: /apps/document_root
 
 ### Memcached
 Version: 1.5.6
 
 ### PHP
 Version: 7.4.10
-
-Config-Dir:
 
 
