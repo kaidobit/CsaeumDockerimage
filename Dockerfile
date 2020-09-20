@@ -32,10 +32,10 @@ rm mysql-apt-config_0.8.15-1_all.deb && \
 apt-get purge -y wget
 
 #manage configs
-COPY configs /etc/supervisor/conf.d/supervisord.conf
-COPY configs /etc/php/7.4/apache2/php.ini
-COPY configs /etc/memcached.conf
-COPY configs /etc/apache2/apache2.conf
+COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY configs/php.ini /etc/php/7.4/apache2/php.ini
+COPY configs/memcached.conf /etc/memcached.conf
+COPY configs/apache2.conf /etc/apache2/apache2.conf
 
 #manage data
 RUN ln -s /var/www/html/ document_root && \
