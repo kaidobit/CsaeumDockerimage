@@ -4,6 +4,23 @@ Dockerimage requested by Csaeum
 
 
 ## Usage
+###Environment Variables
+DB_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: db\
+Name of the Database which is initially created.
+
+DB_ADMIN_USER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: admin\
+Username of the Adminuser which is initially created.
+
+DB_ADMIN_PASSWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: admin\
+Password of the Adminuser which is initially created.
+
+DB_ROOT_PASSWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: root\
+Password of the root-user.
+
 ###MountPoints
 **/apps/document_root** is apache2's documentRoot.
 **/apps/mysql** is mysql's data directory.

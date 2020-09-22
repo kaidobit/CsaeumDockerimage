@@ -41,6 +41,15 @@ COPY configs/apache2.conf /etc/apache2/apache2.conf
 RUN ln -s /var/www/html/ document_root && \
 ln -s /var/lib/mysql/ mysql
 
+#prepare db
+ENV DB_NAME db
+ENV DB_ADMIN_USER admin
+ENV DB_ADMIN_PASSWORD admin
+ENV DB_ROOT_PASSWORD root
+COPY db_setup.sql db_setup.sql
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+
 #mysql
 EXPOSE 3306
 #elasticsearch
