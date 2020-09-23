@@ -1,0 +1,17 @@
+version: '3'
+services:
+  csaeum-image:
+    build: .
+    volumes:
+      - <HOSTDIR_DOCUMENT_ROOT>:/apps/document_root
+      - <HOSTDIR_MYSQL_DATA>:/apps/mysql
+    ports:
+      - 3307:3306
+      - 9200:9200
+      - 80:80
+      - 11211:11211
+    environment:
+      - DB_NAME=<DATABASE_NAME>
+      - DB_ADMIN_USER=<ADMIN_USER>
+      - DB_ADMIN_PASSWORD=<ADMIN_PASSWORD>
+      - DB_ROOT_PASSWORD=<ROOT_PASSWORD>

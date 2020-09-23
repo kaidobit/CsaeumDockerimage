@@ -1,9 +1,12 @@
 # CsaeumDockerimage
 Dockerimage requested by Csaeum
 
-
-
 ## Usage
+###Docker-compose
+Provide appropriate values in docker-compose.yml and run\
+`docker-compose up`
+in the project root directory.\
+
 ###Environment Variables
 DB_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: db\
